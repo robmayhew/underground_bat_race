@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwfdb6t52o72t"]
+
+[ext_resource type="Script" uid="uid://d1li4s5x08iht" path="res://title.gd" id="1_oyqm6"]
+[ext_resource type="Theme" uid="uid://c7bn58skcj27s" path="res://theam.tres" id="1_y7k74"]
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oyqm6")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+theme = ExtResource("1_y7k74")
+text = "Underground Bat Race"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sub" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 250.0
+offset_bottom = 290.0
+grow_horizontal = 2
+theme = ExtResource("1_y7k74")
+text = "You're a bat, underground"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sub2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 350.0
+offset_bottom = 438.0
+grow_horizontal = 2
+theme = ExtResource("1_y7k74")
+text = "and its flooding"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 500.0
+offset_right = 410.0
+offset_bottom = 550.0
+theme = ExtResource("1_y7k74")
+text = "START"
+
+[connection signal="pressed" from="StartBtn" to="." method="_on_button_pressed"]
