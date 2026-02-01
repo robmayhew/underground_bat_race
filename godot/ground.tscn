@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=4 uid="uid://dokifivvarnr4"]
+
+[ext_resource type="TileSet" uid="uid://k64g6swddril" path="res://simple_tileset.tres" id="1_yh8r4"]
+
+[node name="Ground" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAIAAYAAAABAAAAAAAIAAYAAAACAAAAAAAIAAYAAAADAAAAAAAIAAYAAAAEAAAAAAAIAAYAAAAFAAAAAAAIAAYAAAAGAAAAAAAIAAYAAAAHAAAAAAAIAAYAAAAIAAAAAAAIAAYAAAAJAAAAAAAIAAYAAAAKAAAAAAAIAAYAAAALAAAAAAAIAAYAAAAMAAAAAAAIAAYAAAA=")
+tile_set = ExtResource("1_yh8r4")
