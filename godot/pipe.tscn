@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=4 uid="uid://cht1pqha3axkv"]
+
+[ext_resource type="TileSet" uid="uid://k64g6swddril" path="res://simple_tileset.tres" id="1_bepn3"]
+
+[node name="Pipe" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+/wAAAAAIAAIAAAD9/wAAAAAIAAIAAAD8/wAAAAAIAAIAAAD7/wAAAAAIAAIAAAD6/wAAAAAIAAIAAAD5/wAAAAAIAAIAAAD//wAAAAARAAIAAAD4/wAAAAAQAAIAAAAGAAAAAAAQAAIAAAAHAAAAAAAIAAIAAAAIAAAAAAAIAAIAAAAJAAAAAAAIAAIAAAAKAAAAAAAIAAIAAAALAAAAAAAIAAIAAAAMAAAAAAAIAAIAAAANAAAAAAAIAAIAAAAOAAAAAAAIAAIAAAAPAAAAAAAIAAIAAAAQAAAAAAARAAIAAAA=")
+tile_set = ExtResource("1_bepn3")
