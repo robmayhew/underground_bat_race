@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkp8jkjse13"]
+
+[ext_resource type="Texture2D" uid="uid://cgmrp6svq184k" path="res://art/spritesheet.png" id="1_pb2o4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tofr1"]
+radius = 26.172504
+
+[node name="Bat" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pb2o4")
+region_enabled = true
+region_rect = Rect2(642.5, 64.25, 61.5, 57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tofr1")

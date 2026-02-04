@@ -4,7 +4,7 @@ A simple Java tool to generate sprite textures for Godot Sprite2D using basic sh
 
 ## Features
 
-- Generates a sprite sheet with 10 different sprite types
+- Generates a sprite sheet with 11 different sprite types
 - Each sprite type comes in 8 different colors
 - 64x64 pixel sprites (matching tileset size)
 - Anti-aliased rendering for smooth graphics
@@ -22,6 +22,7 @@ A simple Java tool to generate sprite textures for Godot Sprite2D using basic sh
 8. **Enemy** - Menacing spiked character
 9. **NPC** - Friendly character with smile
 10. **Powerup** - Star shape with glow effect
+11. **Bat** - Flying creature with spread wings looking at player
 
 ## Colors
 
@@ -45,7 +46,7 @@ This will generate `spritesheet.png` in the project root directory.
 4. Configure the Region settings:
    - Enable Region
    - Set Region Rect to the sprite you want (e.g., x:0, y:0, w:64, h:64 for the first sprite)
-5. Each sprite is 64x64 pixels, arranged in a grid (10 columns x 8 rows)
+5. Each sprite is 64x64 pixels, arranged in a grid (11 columns x 8 rows)
 
 ## Customization
 

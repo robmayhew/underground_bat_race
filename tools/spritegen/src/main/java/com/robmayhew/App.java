@@ -21,7 +21,7 @@ public class App {
             // Define sprite types and colors
             String[] spriteTypes = {
                     "blob", "robot", "ghost", "alien", "gem", "coin",
-                    "player", "enemy", "npc", "powerup"
+                    "player", "enemy", "npc", "powerup", "bat"
             };
             Color[] colors = {
                     Color.RED,
@@ -115,6 +115,10 @@ public class App {
 
             case "powerup":
                 drawPowerup(g2d, color, centerX, centerY);
+                break;
+
+            case "bat":
+                drawBat(g2d, color, centerX, centerY);
                 break;
         }
     }
@@ -356,5 +360,69 @@ public class App {
         }
         star.closePath();
         g2d.fill(star);
+    }
+
+    // Bat - flying creature with wings spread
+    private static void drawBat(Graphics2D g2d, Color color, int centerX, int centerY) {
+        // Body (rounded oval)
+        g2d.setColor(color);
+        g2d.fillOval(centerX - 10, centerY - 6, 20, 18);
+
+        // Head
+        g2d.fillOval(centerX - 8, centerY - 14, 16, 16);
+
+        // Ears (pointed triangles)
+        int[] earLeftX = {centerX - 8, centerX - 5, centerX - 2};
+        int[] earLeftY = {centerY - 12, centerY - 20, centerY - 12};
+        g2d.fillPolygon(earLeftX, earLeftY, 3);
+
+        int[] earRightX = {centerX + 2, centerX + 5, centerX + 8};
+        int[] earRightY = {centerY - 12, centerY - 20, centerY - 12};
+        g2d.fillPolygon(earRightX, earRightY, 3);
+
+        // Wings (bat wing shape with finger bones)
+        Path2D.Double leftWing = new Path2D.Double();
+        leftWing.moveTo(centerX - 10, centerY);
+        leftWing.curveTo(centerX - 15, centerY - 8, centerX - 22, centerY - 6, centerX - 26, centerY - 2);
+        leftWing.curveTo(centerX - 28, centerY + 2, centerX - 26, centerY + 6, centerX - 22, centerY + 8);
+        leftWing.curveTo(centerX - 18, centerY + 6, centerX - 14, centerY + 4, centerX - 10, centerY + 8);
+        leftWing.closePath();
+        g2d.fill(leftWing);
+
+        Path2D.Double rightWing = new Path2D.Double();
+        rightWing.moveTo(centerX + 10, centerY);
+        rightWing.curveTo(centerX + 15, centerY - 8, centerX + 22, centerY - 6, centerX + 26, centerY - 2);
+        rightWing.curveTo(centerX + 28, centerY + 2, centerX + 26, centerY + 6, centerX + 22, centerY + 8);
+        rightWing.curveTo(centerX + 18, centerY + 6, centerX + 14, centerY + 4, centerX + 10, centerY + 8);
+        rightWing.closePath();
+        g2d.fill(rightWing);
+
+        // Wing membrane details (darker shade)
+        g2d.setColor(color.darker());
+        g2d.setStroke(new BasicStroke(1.5f));
+        // Left wing fingers
+        g2d.drawLine(centerX - 10, centerY, centerX - 24, centerY - 4);
+        g2d.drawLine(centerX - 10, centerY + 4, centerX - 20, centerY + 6);
+        // Right wing fingers
+        g2d.drawLine(centerX + 10, centerY, centerX + 24, centerY - 4);
+        g2d.drawLine(centerX + 10, centerY + 4, centerX + 20, centerY + 6);
+
+        // Small feet/claws at bottom
+        g2d.fillOval(centerX - 4, centerY + 10, 3, 4);
+        g2d.fillOval(centerX + 1, centerY + 10, 3, 4);
+
+        // Eyes (large, looking forward)
+        g2d.setColor(Color.WHITE);
+        g2d.fillOval(centerX - 6, centerY - 10, 5, 6);
+        g2d.fillOval(centerX + 1, centerY - 10, 5, 6);
+
+        // Pupils (looking straight ahead at player)
+        g2d.setColor(Color.RED);
+        g2d.fillOval(centerX - 4, centerY - 8, 2, 3);
+        g2d.fillOval(centerX + 3, centerY - 8, 2, 3);
+
+        // Tiny nose/snout
+        g2d.setColor(color.darker());
+        g2d.fillOval(centerX - 1, centerY - 5, 2, 2);
     }
 }
