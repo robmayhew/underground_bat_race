@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="godot"
-run/main_scene="uid://cwfdb6t52o72t"
+run/main_scene="uid://dvcg5rqbbpuvt"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,10 @@ window/size/viewport_width=720
 window/size/viewport_height=1280
 window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
+
+[editor]
+
+movie_writer/movie_file="/Users/rob/video_output/feb_9_2026.png"
 
 [physics]
 
