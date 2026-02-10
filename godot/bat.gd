@@ -53,6 +53,11 @@ func reset_for_new_game():
 	$AnimatedSprite2D.play("idle")
 
 func _on_pipe_detector_area_entered(area: Area2D) -> void:
+	print("Bat hit something! Area: ", area.name)
+	if area.get_parent().name.begins_with("Pipe"):
+		print("Hit a pipe!")
+	elif area.get_parent().name == "Waterline":
+		print("Hit the water!")
 	hit_pipe_or_water.emit()
 	pass
 	
