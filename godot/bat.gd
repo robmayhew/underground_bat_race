@@ -33,6 +33,16 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.speed_scale = 0.5
 
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider() is TileMapLayer:
+			var tilemap := collision.get_collider() as TileMapLayer
+			var local_pos = tilemap.to_local(collision.get_position())
+			var coords = tilemap.local_to_map(local_pos)
+			var data = tilemap.get_cell_tile_data(coords)
+			var name = data.get_custom_data("name")
+			if name == "pipe":
+				print("Bat hit a pipe")
 
 
 func _flap() -> void:
