@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal first_flap
 signal any_flap
 signal hit_pipe_or_water
+signal bat_scored
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -40,9 +41,14 @@ func _physics_process(delta: float) -> void:
 			var local_pos = tilemap.to_local(collision.get_position())
 			var coords = tilemap.local_to_map(local_pos)
 			var data = tilemap.get_cell_tile_data(coords)
-			var name = data.get_custom_data("name")
-			if name == "pipe":
-				print("Bat hit a pipe")
+			if data != null:
+				if data.has_custom_data("name"):
+					var name = data.get_custom_data("name")
+					if name == "pipe":
+						hit_pipe_or_water.emit()
+					elif name == "water":
+						hit_pipe_or_water.emit()
+
 
 
 func _flap() -> void:
@@ -62,15 +68,13 @@ func reset_for_new_game():
 	is_game_over = false
 	$AnimatedSprite2D.play("idle")
 
-func _on_pipe_detector_area_entered(area: Area2D) -> void:
-	print("Bat hit something! Area: ", area.name)
-	if area.get_parent().name.begins_with("Pipe"):
-		print("Hit a pipe!")
-	elif area.get_parent().name == "Waterline":
-		print("Hit the water!")
-	hit_pipe_or_water.emit()
-	pass
+
 	
 func game_over():
 	is_game_over = true
 	$AnimatedSprite2D.play('dead')
+
+
+func _on_bat_area_area_entered(area: Area2D) -> void:
+	bat_scored.emit()
+	pass # Replace with function body.

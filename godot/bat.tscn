@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bkp8jkjse13"]
+[gd_scene load_steps=22 format=3 uid="uid://bkp8jkjse13"]
 
 [ext_resource type="Texture2D" uid="uid://de1n2i7ko6h01" path="res://art/bat _2.png" id="1_pb2o4"]
 [ext_resource type="Script" uid="uid://b1kvpsdnnmbys" path="res://bat.gd" id="1_tofr1"]
@@ -126,6 +126,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tofr1"]
+size = Vector2(47, 40)
+
 [node name="Bat" type="CharacterBody2D"]
 script = ExtResource("1_tofr1")
 
@@ -136,3 +139,11 @@ shape = SubResource("CircleShape2D_tofr1")
 sprite_frames = SubResource("SpriteFrames_gpg7w")
 frame = 15
 frame_progress = 0.65200526
+
+[node name="BatArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BatArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_tofr1")
+
+[connection signal="area_entered" from="BatArea" to="." method="_on_bat_area_area_entered"]
