@@ -5,6 +5,8 @@ var start_bat_position
 var start_water_position
 var pipe_scene:PackedScene
 var pipe_positions = [-800]
+var score = 0
+var is_animating_score = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start_bat_position = $Bat.position
@@ -30,3 +32,49 @@ func app_pipes() -> void:
 		pipe.speed = randi_range(100,150)
 		add_child(pipe)
 		
+
+
+func _on_bat_bat_scored() -> void:
+	score = score + 1
+	$UI/Score.text = str(score)
+	animate_score_pop()
+	pass # Replace with function body.
+
+
+func _on_bat_hit_pipe_or_water() -> void:
+	pass # Replace with function body.
+
+func animate_score_pop() -> void:
+	if is_animating_score:
+		return
+	var score_label = $UI/Score
+	is_animating_score = true
+
+	# Create a tween for smooth animations
+	var tween = create_tween()
+	tween.set_parallel(true)
+
+	# Scale animation: pop bigger then back to normal
+	tween.tween_property(score_label, "scale", Vector2(1.5, 1.5), 0.1)
+	tween.chain().tween_property(score_label, "scale", Vector2(1.0, 1.0), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+
+	# Color cycling animation through vibrant colors
+	var colors = [
+		Color(1.0, 0.2, 0.2),  # Red
+		Color(1.0, 0.5, 0.0),  # Orange
+		Color(1.0, 0.9, 0.0),  # Yellow
+		Color(0.2, 1.0, 0.2),  # Green
+		Color(0.0, 0.8, 1.0),  # Cyan
+		Color(0.6, 0.2, 1.0),  # Purple
+	]
+
+	# Pick a random color to cycle through
+	var color1 = colors[randi() % colors.size()]
+	var color2 = colors[randi() % colors.size()]
+
+	tween.tween_property(score_label, "modulate", color1, 0.1)
+	tween.chain().tween_property(score_label, "modulate", color2, 0.1)
+	tween.chain().tween_property(score_label, "modulate", Color.WHITE, 0.1)
+
+	# Reset animation flag when done
+	tween.finished.connect(func(): is_animating_score = false)

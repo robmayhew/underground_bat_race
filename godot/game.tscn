@@ -22,3 +22,15 @@ position = Vector2(399, 1054)
 
 [node name="Waterline" parent="." instance=ExtResource("5_7jktm")]
 position = Vector2(0, 1392)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="UI"]
+offset_left = 61.0
+offset_top = 73.0
+offset_right = 101.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 48
+
+[connection signal="bat_scored" from="Bat" to="." method="_on_bat_bat_scored"]
+[connection signal="hit_pipe_or_water" from="Bat" to="." method="_on_bat_hit_pipe_or_water"]
