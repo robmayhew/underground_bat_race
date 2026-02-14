@@ -7,16 +7,15 @@ var pipe_scene:PackedScene
 var pipe_positions = [-800]
 var score = 0
 var is_animating_score = false
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready() -> void:
 	start_bat_position = $Bat.position
 	start_water_position = $Waterline.position
 	pipe_scene = ResourceLoader.load("res://pipe.tscn")
 	app_pipes()
-	pass # Replace with function body.
+	pass 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
@@ -38,11 +37,12 @@ func _on_bat_bat_scored() -> void:
 	score = score + 1
 	$UI/Score.text = str(score)
 	animate_score_pop()
-	pass # Replace with function body.
+	pass 
 
 
 func _on_bat_hit_pipe_or_water() -> void:
-	pass # Replace with function body.
+	SceneManager.change_scene("res://title.tscn");	
+	pass 
 
 func animate_score_pop() -> void:
 	if is_animating_score:
