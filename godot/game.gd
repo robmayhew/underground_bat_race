@@ -13,14 +13,15 @@ func _ready() -> void:
 	start_bat_position = $Bat.position
 	start_water_position = $Waterline.position
 	pipe_scene = ResourceLoader.load("res://pipe.tscn")
-	app_pipes()
+	add_pipes()
 	pass 
 
 func _process(delta: float) -> void:
+	check_if_need_more_pipes()
 	pass
 
 
-func app_pipes() -> void:
+func add_pipes() -> void:
 	var y = pipe_positions[-1]
 	for i in range(4):
 		y = y + 100 + randf_range(300,400)
@@ -43,6 +44,12 @@ func _on_bat_bat_scored() -> void:
 func _on_bat_hit_pipe_or_water() -> void:
 	SceneManager.change_scene("res://title.tscn");	
 	pass 
+	
+func check_if_need_more_pipes() -> void:
+	var lastPipe = pipe_positions[-1]
+	var diff = lastPipe - $Bat.position.y
+	if diff > - 500:
+		add_pipes()
 
 func animate_score_pop() -> void:
 	if is_animating_score:
