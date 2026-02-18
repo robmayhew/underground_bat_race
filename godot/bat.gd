@@ -68,10 +68,14 @@ func reset_for_new_game():
 	is_game_over = false
 	$AnimatedSprite2D.play("idle")
 
-
-	
 func game_over():
+	if is_game_over:
+		return
 	is_game_over = true
+	var camera = $Camera2D
+	var camera_global_pos = camera.global_position
+	camera.reparent(self.get_parent())
+	camera.global_position = camera_global_pos
 	$AnimatedSprite2D.play('dead')
 
 

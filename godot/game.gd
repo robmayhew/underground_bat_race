@@ -7,6 +7,7 @@ var pipe_scene:PackedScene
 var pipe_positions = [-800]
 var score = 0
 var is_animating_score = false
+var is_game_over = false 
 
 
 func _ready() -> void:
@@ -29,7 +30,7 @@ func add_pipes() -> void:
 		var pipe = pipe_scene.instantiate()
 		pipe.position.y = -1 * y;
 		pipe.position.x = 100 - randi_range(1,200)
-		pipe.speed = randi_range(100,150)
+		pipe.speed = randi_range(90,140)
 		add_child(pipe)
 		
 
@@ -42,7 +43,12 @@ func _on_bat_bat_scored() -> void:
 
 
 func _on_bat_hit_pipe_or_water() -> void:
-	SceneManager.change_scene("res://title.tscn");	
+	if is_game_over:
+		return
+	is_game_over = true
+	Globals.game_over(score)
+	$Bat.game_over()
+	$GameOverTimer.start()
 	pass 
 	
 func check_if_need_more_pipes() -> void:
@@ -85,3 +91,8 @@ func animate_score_pop() -> void:
 
 	# Reset animation flag when done
 	tween.finished.connect(func(): is_animating_score = false)
+
+
+func _on_game_over_timer_timeout() -> void:
+	SceneManager.change_scene("res://title.tscn");
+	pass # Replace with function body.

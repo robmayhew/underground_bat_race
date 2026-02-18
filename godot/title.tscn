@@ -62,5 +62,13 @@ wait_time = 0.2
 one_shot = true
 autostart = true
 
+[node name="message" type="Label" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 679.0
+offset_right = 71.0
+offset_bottom = 746.0
+theme_override_font_sizes/font_size = 48
+
 [connection signal="pressed" from="StartBtn" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="WaitToStartTimer" to="." method="_on_wait_to_start_timer_timeout"]

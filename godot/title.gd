@@ -5,6 +5,12 @@ var ignore_start = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if(Globals.just_got_a_high_score):
+		$message.text = "New high score " + str(Globals.best_score)
+	elif(Globals.best_score == 0):
+		$message.text = "First time playing, Good luck!"
+	else:
+		$message.text = "Last score: "  + str(Globals.last_score) + " High Score: " + str(Globals.best_score)
 	pass 
 
 

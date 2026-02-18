@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvcg5rqbbpuvt"]
+[gd_scene load_steps=5 format=3 uid="uid://dvcg5rqbbpuvt"]
 
 [ext_resource type="PackedScene" uid="uid://dokifivvarnr4" path="res://ground.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://umoum1len78n" path="res://game.gd" id="1_ryrav"]
-[ext_resource type="PackedScene" uid="uid://boijmwxge8wgd" path="res://test_object.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://bkp8jkjse13" path="res://bat.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://b5yneij8rx82q" path="res://waterline.tscn" id="5_7jktm"]
 
@@ -11,9 +10,6 @@ script = ExtResource("1_ryrav")
 
 [node name="Ground" parent="." instance=ExtResource("1_80nbo")]
 position = Vector2(0, 1180)
-
-[node name="TestObject" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(384, 202)
 
 [node name="Bat" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(399, 1054)
@@ -32,5 +28,9 @@ offset_right = 101.0
 offset_bottom = 96.0
 theme_override_font_sizes/font_size = 48
 
+[node name="GameOverTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="bat_scored" from="Bat" to="." method="_on_bat_bat_scored"]
 [connection signal="hit_pipe_or_water" from="Bat" to="." method="_on_bat_hit_pipe_or_water"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
