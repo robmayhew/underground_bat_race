@@ -76,6 +76,7 @@ func game_over():
 	var camera_global_pos = camera.global_position
 	camera.reparent(self.get_parent())
 	camera.global_position = camera_global_pos
+	$CollisionPolygon2D.disabled = true
 	$AnimatedSprite2D.play('dead')
 
 
