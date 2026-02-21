@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Underground Bat Race</title>
+</head>
+<body>
+    <h1>Underground Bat Race</h1>
+    <p>WebSocket status: <span id="status">disconnected</span></p>
+    <script>
+        const ws = new WebSocket(`ws://${location.host}/ws/game`);
+        const status = document.getElementById('status');
+        ws.onopen = () => status.textContent = 'connected';
+        ws.onclose = () => status.textContent = 'disconnected';
+        ws.onerror = () => status.textContent = 'error';
+    </script>
+</body>
+</html>
