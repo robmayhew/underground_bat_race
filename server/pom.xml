@@ -18,7 +18,7 @@
     <description>Underground Bat Race Game Server</description>
 
     <properties>
-        <java.version>24</java.version>
+        <java.version>21</java.version>
     </properties>
 
     <dependencies>

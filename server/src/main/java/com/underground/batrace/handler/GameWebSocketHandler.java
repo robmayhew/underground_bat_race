@@ -24,5 +24,6 @@ public class GameWebSocketHandler implements WebSocketHandler {
                         .map(payload -> session.textMessage("echo: " + payload))
                         .doFinally(sig -> log.info("Client disconnected: {} ({})", session.getId(), sig))
         );
+        
     }
 }

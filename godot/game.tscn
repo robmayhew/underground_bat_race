@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvcg5rqbbpuvt"]
+[gd_scene load_steps=6 format=3 uid="uid://dvcg5rqbbpuvt"]
 
 [ext_resource type="PackedScene" uid="uid://dokifivvarnr4" path="res://ground.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://umoum1len78n" path="res://game.gd" id="1_ryrav"]
 [ext_resource type="PackedScene" uid="uid://bkp8jkjse13" path="res://bat.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://b5yneij8rx82q" path="res://waterline.tscn" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://6s64xfhwr0m5" path="res://server.tscn" id="5_ryrav"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_ryrav")
@@ -30,6 +31,8 @@ theme_override_font_sizes/font_size = 48
 
 [node name="GameOverTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Server" parent="." instance=ExtResource("5_ryrav")]
 
 [connection signal="bat_scored" from="Bat" to="." method="_on_bat_bat_scored"]
 [connection signal="hit_pipe_or_water" from="Bat" to="." method="_on_bat_hit_pipe_or_water"]
