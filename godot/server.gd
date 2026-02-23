@@ -1,6 +1,6 @@
 extends Node
 
-@export var websocket_url = "wss://localhost:8080/ws/game"
+@export var websocket_url = "ws://localhost:8080/ws/game"
 
 var socket = WebSocketPeer.new()
 func _ready():
