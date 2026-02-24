@@ -1,3 +1,5 @@
 /Users/rob/src2/underground_bat_race/server/src/main/java/com/underground/batrace/ServerApplication.java
 /Users/rob/src2/underground_bat_race/server/src/main/java/com/underground/batrace/config/WebSocketConfig.java
 /Users/rob/src2/underground_bat_race/server/src/main/java/com/underground/batrace/handler/GameWebSocketHandler.java
+/Users/rob/src2/underground_bat_race/server/src/main/java/com/underground/batrace/model/GameSession.java
+/Users/rob/src2/underground_bat_race/server/src/main/java/com/underground/batrace/service/GameSessionService.java

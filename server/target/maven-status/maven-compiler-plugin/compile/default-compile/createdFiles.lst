@@ -1,3 +1,5 @@
 com/underground/batrace/handler/GameWebSocketHandler.class
-com/underground/batrace/ServerApplication.class
+com/underground/batrace/service/GameSessionService.class
+com/underground/batrace/model/GameSession.class
 com/underground/batrace/config/WebSocketConfig.class
+com/underground/batrace/ServerApplication.class
