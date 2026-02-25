@@ -133,6 +133,7 @@ public class GameSessionService {
     private GameSession createNewSession() {
         String gameId = UUID.randomUUID().toString().replace("-", "").substring(0, 8).toUpperCase();
         long seed = random.nextLong();
+        seed = 7;
         GameSession session = new GameSession(gameId, seed);
         sessions.put(gameId, session);
         log.info("Created new game session: {} seed={}", gameId, seed);

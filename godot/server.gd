@@ -1,19 +1,29 @@
 extends Node
 
 @export var websocket_url = "ws://localhost:8080/ws/game"
+signal server_ready
 
 var socket = WebSocketPeer.new()
 func _ready():
+	server_ready.emit()
+	if OS.has_feature("web"):
+		var protocol = JavaScriptBridge.eval("window.location.protocol")
+		var hostname = JavaScriptBridge.eval("window.location.hostname")
+		var 	port = JavaScriptBridge.eval("window.location.port")
+		var ws_protocol = "ws"
+		if protocol == "https":
+			ws_protocol = "wss"
+		var ws_port = ""
+		if port != "":
+			ws_port = ":" + port
+		websocket_url + "://" + hostname + port + "/ws/game"
+	
+	print("Connecting on ", websocket_url)
+	
 	# Initiate connection to the given URL.
 	var err = socket.connect_to_url(websocket_url)
 	if err == OK:
 		print("Connecting to %s..." % websocket_url)
-		# Wait for the socket to connect.
-		await get_tree().create_timer(2).timeout
-
-		# Send data.
-		print("> Sending test packet.")
-		socket.send_text("Test packet")
 	else:
 		push_error("Unable to connect.")
 		set_process(false)
@@ -35,6 +45,7 @@ func _process(_delta):
 			if socket.was_string_packet():
 				var packet_text = packet.get_string_from_utf8()
 				print("< Got text data from server: %s" % packet_text)
+				_handle_message(packet_text)
 			else:
 				print("< Got binary data from server: %d bytes" % packet.size())
 
@@ -50,3 +61,12 @@ func _process(_delta):
 		var code = socket.get_close_code()
 		print("WebSocket closed with code: %d. Clean: %s" % [code, code != -1])
 		set_process(false) # Stop processing.
+
+
+func _handle_message(text: String):
+	var json = JSON.new()
+	json.parse(text)
+	var data = json.data
+	if data["type"] == "config":
+		Globals.ranom_seed = data["seed"]	
+		server_ready.emit()

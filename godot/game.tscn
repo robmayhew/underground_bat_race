@@ -37,3 +37,4 @@ one_shot = true
 [connection signal="bat_scored" from="Bat" to="." method="_on_bat_bat_scored"]
 [connection signal="hit_pipe_or_water" from="Bat" to="." method="_on_bat_hit_pipe_or_water"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
+[connection signal="server_ready" from="Server" to="." method="_on_server_server_ready"]

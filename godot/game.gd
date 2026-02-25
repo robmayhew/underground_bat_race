@@ -9,6 +9,8 @@ var score = 0
 var is_animating_score = false
 var is_game_over = false 
 
+var rng = RandomNumberGenerator.new()
+
 
 func _ready() -> void:
 	start_bat_position = $Bat.position
@@ -22,10 +24,14 @@ func _process(delta: float) -> void:
 	pass
 
 
+	
+	
+
+
 func add_pipes() -> void:
 	var y = pipe_positions[-1]
 	for i in range(4):
-		y = y + 100 + randf_range(300,400)
+		y = y + 100 + randf_range(300,400) + (100 * randi_range(0,4))
 		pipe_positions.append(y)
 		var pipe = pipe_scene.instantiate()
 		pipe.position.y = -1 * y;
@@ -95,4 +101,11 @@ func animate_score_pop() -> void:
 
 func _on_game_over_timer_timeout() -> void:
 	SceneManager.change_scene("res://title.tscn");
+	pass # Replace with function body.
+
+
+func _on_server_server_ready() -> void:
+	print("Server ready. Seed is " + str(Globals.ranom_seed))
+	rng.seed = Globals.ranom_seed
+
 	pass # Replace with function body.

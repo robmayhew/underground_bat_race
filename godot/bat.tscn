@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bkp8jkjse13"]
+[gd_scene load_steps=31 format=3 uid="uid://bkp8jkjse13"]
 
 [ext_resource type="Texture2D" uid="uid://de1n2i7ko6h01" path="res://art/bat _2.png" id="1_pb2o4"]
 [ext_resource type="Script" uid="uid://b1kvpsdnnmbys" path="res://bat.gd" id="1_tofr1"]
@@ -197,6 +197,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tofr1"]
 size = Vector2(47, 40)
 
+[sub_resource type="Gradient" id="Gradient_tofr1"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vobq3"]
+gradient = SubResource("Gradient_tofr1")
+
 [node name="Bat" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_tofr1")
@@ -213,5 +218,11 @@ shape = SubResource("RectangleShape2D_tofr1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-4.666667, -18, -2, -14, 1.3333334, -15.333334, 3.3333335, -19.333334, 8, -16, 10, -6.666667, 13.333334, -4.666667, 23.333334, -4.666667, 28, 0, 26, 6, 23.333334, 8.666667, 15.333334, 6, 11.333334, 6.666667, 9.333334, 10.666667, 7.3333335, 16, -0.6666667, 17.333334, -9.333334, 16.666668, -9.333334, 10.666667, -11.333334, 6.666667, -18.666668, 8, -24.666668, 8, -27.333334, 2.6666667, -26.666668, -4.666667, -22, -4.666667, -14.666667, -4.666667, -10, -2.6666667, -8.666667, -2.6666667)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.6666667, 0)
+energy = 20.0
+texture = SubResource("GradientTexture2D_vobq3")
+texture_scale = 0.27
 
 [connection signal="area_entered" from="BatArea" to="." method="_on_bat_area_area_entered"]

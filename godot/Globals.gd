@@ -4,6 +4,7 @@ var times_played = 0
 var last_score = 0
 var best_score = 0
 var just_got_a_high_score = false
+var ranom_seed = 0
 
 func game_over(score):
 	times_played = times_played + 1
