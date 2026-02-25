@@ -5,6 +5,11 @@ uniform float wave_strength = 0.01;
 uniform float wave_speed = 2.0;
 uniform vec4 water_color : source_color = vec4(0.0, 0.4, 0.9, 1.0);
 
+
+
+
+
+
 void fragment() {
     float t = TIME * wave_speed * time_scale;
 
